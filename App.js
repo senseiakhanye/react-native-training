@@ -1,21 +1,31 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import HomeScreen from './src/screens/HomeScreen';
+import ComponentsScreen from './src/screens/ComponentScreen';
+import ListScreen from './src/screens/ListScreen';
+import Images from './src/screens/Images/images';
+import Counter from './src/screens/Counter/Counter';
+import FormContact from './src/screens/Form/Form';
+import Colour from './src/screens/Colours/Colours';
+import ChangeColours from './src/screens/ChangeColours/changeColours';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const navigator = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Components: ComponentsScreen,
+    Lists: ListScreen,
+    CustomImages: Images,
+    Counter: Counter,
+    FormContact: FormContact,
+    Colour: Colour,
+    ChangeColours: ChangeColours
   },
-});
+  {
+    initialRouteName: 'Home',
+    defaultNavigationOptions: {
+      title: 'Katleho',
+    },
+  }
+);
+
+export default createAppContainer(navigator);
