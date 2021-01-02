@@ -4,13 +4,17 @@ import ButtonStyle from '../../../UI/Buttons/Buttons';
 
 const ChangeColour = ({colour, update, val}) => {
     const pressed = (up) => {
-        update(oldRgb => {
-            const updatedRgb = { ...oldRgb };
-            if ((oldRgb[colour.toLowerCase()] < 255 && up) || (oldRgb[colour.toLowerCase()] > 0 && !up)) {
-                updatedRgb[colour.toLowerCase()] = (up) ? oldRgb[colour.toLowerCase()] + 5 : oldRgb[colour.toLowerCase()] - 5;
-            }
-            return updatedRgb;
+        update({
+            type: (up) ? 'incrementColour' : 'decrementColour',
+            colour: colour.toLowerCase()
         })
+        // update(oldRgb => {
+        //     const updatedRgb = { ...oldRgb };
+        //     if ((oldRgb[colour.toLowerCase()] < 255 && up) || (oldRgb[colour.toLowerCase()] > 0 && !up)) {
+        //         updatedRgb[colour.toLowerCase()] = (up) ? oldRgb[colour.toLowerCase()] + 5 : oldRgb[colour.toLowerCase()] - 5;
+        //     }
+        //     return updatedRgb;
+        // })
     }
 
     return (
