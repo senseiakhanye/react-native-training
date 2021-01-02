@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import CounterData from '../../Context/context';
 
 const Counter = () => {
-    const [ counter, updateCounter ] = useState(0);
+    const countInfo = useContext(CounterData);
+    const [ counter, updateCounter ] = useState(countInfo.counterNum);
 
     const onPressedBtn = (increase) => {
-        // counter = (increase) ? counter + 1 : counter - 1;
         updateCounter(oldCounter => {
-            return (increase) ? oldCounter + 1 : oldCounter - 1;
+            const counterVal = (increase) ? oldCounter + 1: oldCounter - 1;
+            countInfo.counterNum = counterVal;
+            return counterVal;
         })
     }
 
@@ -22,7 +25,7 @@ const Counter = () => {
             <Text style={styles.counterText}>Current Count:</Text>
             <Text style={styles.counterText}>{counter}</Text>
         </View>
-    )
+    );
 };
 
 const styles = StyleSheet.create({

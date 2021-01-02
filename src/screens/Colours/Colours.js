@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, FlatList, TouchableOpacity, Text } from 'react-native';
 import ButtonStyle from '../../UI/Buttons/Buttons';
+import contextUseData from '../../Context/context';
 
 const Colours = () => {
-    const [ colours , updateColours ] = useState([]);
+    const contextData = useContext(contextUseData);
+    const [ colours , updateColours ] = useState(contextData.colours);
     
     const rgbColours = () => {
         const red = Math.floor(Math.random() * 256);
@@ -12,13 +14,15 @@ const Colours = () => {
         return `rgb(${red}, ${green}, ${blue})`;
     }
 
-    const generateColour = () => {        
+    const generateColour = () => {
         const newColour = rgbColours();
         updateColours(oldColours => {
-            return [ ...oldColours, {
+            const updatedColours = [ ...oldColours, {
                 id: newColour,
                 colour: newColour
             }];
+            contextData.colours = [...updatedColours];
+            return updatedColours;
         })
     }
 

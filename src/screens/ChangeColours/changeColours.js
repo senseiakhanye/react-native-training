@@ -11,11 +11,11 @@ const initialValue = {
 const reducer = (state, action) => {
     switch (action.type) {
         case 'incrementColour':
-            const updatedColour = {...state};
-            updatedColour[action.colour] = state[action.colour] < 255 ? state[action.colour] + 5 : 255;
-            return updatedColour;
+            const increaseColour = { ...state };
+            increaseColour[action.colour] = state[action.colour] < 255 ? state[action.colour] + 5 : 255;
+            return increaseColour;
         case 'decrementColour':
-            const decreaseColour = {...state};
+            const decreaseColour = { ...state };
             decreaseColour[action.colour] = state[action.colour] > 0 ? state[action.colour] -5 : 0;
             return decreaseColour;
         default:
