@@ -1,30 +1,32 @@
-import React, { useState, useReducer } from 'react';
+import React, { useContext, useReducer } from 'react';
 import ChangeColour from './ChangeColour/changeColour';
 import { View } from 'react-native';
+import { defaultColour, changeColourReducer } from '../../Context/context';
 
-const initialValue = {
-    red: 0,
-    green: 0,
-    blue: 0
-}
+// const initialValue = {
+//     red: 0,
+//     green: 0,
+//     blue: 0
+// }
 
-const reducer = (state, action) => {
-    switch (action.type) {
-        case 'incrementColour':
-            const increaseColour = { ...state };
-            increaseColour[action.colour] = state[action.colour] < 255 ? state[action.colour] + 5 : 255;
-            return increaseColour;
-        case 'decrementColour':
-            const decreaseColour = { ...state };
-            decreaseColour[action.colour] = state[action.colour] > 0 ? state[action.colour] -5 : 0;
-            return decreaseColour;
-        default:
-            return state;
-    }
-}
+// const reducer = (state, action) => {
+//     switch (action.type) {
+//         case 'incrementColour':
+//             const increaseColour = { ...state };
+//             increaseColour[action.colour] = state[action.colour] < 255 ? state[action.colour] + 5 : 255;
+//             return increaseColour;
+//         case 'decrementColour':
+//             const decreaseColour = { ...state };
+//             decreaseColour[action.colour] = state[action.colour] > 0 ? state[action.colour] -5 : 0;
+//             return decreaseColour;
+//         default:
+//             return state;
+//     }
+// }
 
 const ChangeColours = () => {
-    const [ colour, dispatch ] = useReducer(reducer, initialValue);
+    const defaultColourContext = useContext(defaultColour)
+    const [ colour, dispatch ] = useReducer(changeColourReducer, defaultColourContext);
     // const [ colour, updateColour ] = useState({
     //     red: 0,
     //     green: 0,

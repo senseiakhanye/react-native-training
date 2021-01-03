@@ -45,6 +45,12 @@ const HomeScreen = (props) => {
         onPress={() => props.navigation.navigate('ChangeColours')} >
         <Text style={ButtonStyle.textButton}>Change Colour</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          return props.navigation.navigate('Layouts');
+        }}>
+        <Text style={ButtonStyle.textButton}>Layouts</Text>
+      </TouchableOpacity>
     </View>
     );
 };

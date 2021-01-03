@@ -9,6 +9,9 @@ const FormContact = () => {
         <View>
             <Text>Name</Text>
             <TextInput 
+                style={styles.input}
+                autoCapitalize="none"
+                autoCorrect={false}
                 onChangeText={text => updateText(text)}
                 value={txt} />
             <Text>You entered:</Text>
@@ -18,7 +21,12 @@ const FormContact = () => {
 }
 
 const styles = StyleSheet.create({
-
+    input: {
+        margin: 15,
+        borderColor: 'black',
+        borderWidth: 1,
+        padding: 10
+    }
 });
 
 export default FormContact;
